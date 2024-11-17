@@ -13,15 +13,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //list of coffee types
   final List coffeeTypes = [
-    ['Cappucino', true],
-    ['Latte', true],
-    ['Tea', true],
-    ['Milk', true],
+    ['Cappucino', false],
+    ['Latte', false],
+    ['Tea', false],
+    ['Milk', false],
   ];
 
   // user tap on coffee types
   void coffeeTypeSelected(int index) {
     setState(() {
+      if (coffeeTypes[index][1] == true) {
+        coffeeTypes[index][1] = false;
+        return;
+      }
+
       for (int i = 0; i < coffeeTypes.length; i++) {
         coffeeTypes[i][1] = false;
       }
@@ -44,7 +49,6 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      
       body: Column(
         children: [
           //finding the best coffee for u
@@ -104,20 +108,16 @@ class _HomePageState extends State<HomePage> {
                   coffeeName: 'Latte',
                   coffeePrice: '\$4.00',
                 ),
-
-
                 CoffeeTile(
                   coffeeImagePath: 'lib/images/coffee.jpg',
                   coffeeName: 'Cappucino',
                   coffeePrice: '\$6.00',
                 ),
-
                 CoffeeTile(
                   coffeeImagePath: 'lib/images/milk.jpg',
                   coffeeName: 'Milk Coffee',
                   coffeePrice: '\$5.00',
                 ),
-                
               ],
             ),
           )

@@ -1,9 +1,8 @@
-import 'package:coffee_ui/pages/home.dart';
-import 'package:coffee_ui/pages/home_page.dart';
+import 'package:coffee_ui/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,10 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
-      theme: ThemeData(brightness: Brightness.dark,
-      primarySwatch: Colors.orange
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.orange,
       ),
+      home: const SplashScreen(),
     );
   }
 }
