@@ -22,12 +22,13 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     HomePage(),
     FavPage(),
-    Notify()
+    NotifyPage()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,

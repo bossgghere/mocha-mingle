@@ -67,14 +67,15 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: TextField(
+              
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
                   hintText: 'Find your coffee...',
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade600),
+                    borderSide: BorderSide(color: Colors.orange),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade600),
+                    borderSide: BorderSide(color: Colors.orange),
                   )),
             ),
           ),
