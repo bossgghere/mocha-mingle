@@ -8,21 +8,6 @@ class FavPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[900],
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: Icon(Icons.menu),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Icon(Icons.person),
-          )
-        ],
-        title: Text(
-          'Favorites',
-          style: GoogleFonts.bebasNeue(fontSize: 30, color: Colors.white),
-        ),
-      ),
       body: Column(
         children: [
           // Favorites Title
@@ -38,7 +23,7 @@ class FavPage extends StatelessWidget {
           // List of Favorite Coffees (Sample)
           Expanded(
             child: ListView.builder(
-              itemCount: 5,  // Example number of favorite items
+              itemCount: 10, // Example number of favorite items
               itemBuilder: (context, index) {
                 return Card(
                   color: Colors.black54,
@@ -46,7 +31,7 @@ class FavPage extends StatelessWidget {
                   child: ListTile(
                     leading: Icon(Icons.favorite, color: Colors.orange),
                     title: Text(
-                      'Coffee #$index',
+                      'Coffee #${index+1}',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     subtitle: Text(
@@ -54,7 +39,8 @@ class FavPage extends StatelessWidget {
                       style: TextStyle(color: Colors.grey),
                     ),
                     trailing: IconButton(
-                      icon: Icon(Icons.remove_circle_outline, color: Colors.red),
+                      icon:
+                          Icon(Icons.remove_circle_outline, color: Colors.red),
                       onPressed: () {
                         // Remove from favorites logic
                       },

@@ -28,7 +28,7 @@ class CoffeeTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //coffee image
-            Container(
+            SizedBox(
               height: 230,
               width: 160,
               child: ClipRRect(
