@@ -31,7 +31,7 @@ class FavPage extends StatelessWidget {
                   child: ListTile(
                     leading: Icon(Icons.favorite, color: Colors.orange),
                     title: Text(
-                      'Coffee #${index+1}',
+                      'Coffee #${index + 1}',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     subtitle: Text(
@@ -42,7 +42,7 @@ class FavPage extends StatelessWidget {
                       icon:
                           Icon(Icons.remove_circle_outline, color: Colors.red),
                       onPressed: () {
-                        // Remove from favorites logic
+                        
                       },
                     ),
                   ),

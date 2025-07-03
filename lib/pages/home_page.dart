@@ -1,115 +1,152 @@
-import 'package:coffee_ui/pages/profile.dart';
-import 'package:coffee_ui/util/coffee_tile.dart';
-import 'package:coffee_ui/util/coffee_type.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  // List of coffee types
-  final List coffeeTypes = [
-    ['Cappuccino', false],
-    ['Latte', false],
-    ['Tea', false],
-    ['Milk', false],
-  ];
-
-  // User tap on coffee types
-  void coffeeTypeSelected(int index) {
-    setState(() {
-      if (coffeeTypes[index][1] == true) {
-        coffeeTypes[index][1] = false;
-        return;
-      }
-
-      for (int i = 0; i < coffeeTypes.length; i++) {
-        coffeeTypes[i][1] = false;
-      }
-      coffeeTypes[index][1] = true;
-    });
+  String getGreeting() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) return "Good Morning";
+    if (hour < 17) return "Good Afternoon";
+    return "Good Evening";
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
-      
-      body: Column(
-        mainAxisSize: MainAxisSize.min, // Make the Column size to its children
-        children: [
-          // Finding the best coffee for you
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Text(
-              'Find the best coffee for you',
-              style: GoogleFonts.bebasNeue(fontSize: 56, color: Colors.white),
-            ),
-          ),
-          const SizedBox(height: 25),
-          // Search bar
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: TextField(
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search, color: Colors.orange),
-                hintText: 'Find your coffee...',
-                hintStyle: const TextStyle(color: Colors.grey),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange),
-                ),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange),
+      body: Container(
+        decoration: BoxDecoration(),
+        child: Column(
+          children: [
+            const SizedBox(height: 40),
+            // Greeting
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '${getGreeting()}, FIND YOUR COFFEE ☕',
+                  style: GoogleFonts.bebasNeue(
+                    fontSize: 40,
+                    color: Colors.orange,
+                  ),
                 ),
               ),
-              style:
-                  const TextStyle(color: Colors.white), // Set input text color
+            ),
+
+            const SizedBox(height: 20),
+
+            // Section Title
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Featured Items',
+                  style: GoogleFonts.bebasNeue(
+                    fontSize: 30,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Coffee/Food horizontal list
+            SizedBox(
+              height: 250,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: const [],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FeaturedCard extends StatelessWidget {
+  final String name;
+  final String price;
+  final String imagePath;
+
+  const FeaturedCard({
+    super.key,
+    required this.name,
+    required this.price,
+    required this.imagePath,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 180,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: Colors.grey[850],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        children: [
+          // Image
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+            child: Image.asset(
+              imagePath,
+              height: 140,
+              width: double.infinity,
+              fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 20),
-          // Coffee types horizontal list
-          SizedBox(
-            height: 50,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: coffeeTypes.length,
-              itemBuilder: (context, index) {
-                return CoffeeType(
-                  coffeeType: coffeeTypes[index][0],
-                  isSelected: coffeeTypes[index][1],
-                  onTap: () {
-                    coffeeTypeSelected(index);
-                  },
+
+          const SizedBox(height: 10),
+
+          // Name & Price
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              children: [
+                Text(name,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    )),
+                const SizedBox(height: 5),
+                Text(price,
+                    style: const TextStyle(
+                      color: Colors.orange,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ],
+            ),
+          ),
+
+          const Spacer(),
+
+          // Add to Cart Button
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: ElevatedButton.icon(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('$name added to cart 🛒'),
+                    backgroundColor: Colors.green,
+                    duration: const Duration(seconds: 1),
+                  ),
                 );
               },
-            ),
-          ),
-          // Horizontal coffee list with Expanded to prevent overflow
-          Flexible(
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: const [
-                CoffeeTile(
-                  coffeeImagePath: 'lib/images/latte.jpg',
-                  coffeeName: 'Latte',
-                  coffeePrice: '\$4.00',
+              icon: const Icon(Icons.add_shopping_cart),
+              label: const Text('Add'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                CoffeeTile(
-                  coffeeImagePath: 'lib/images/coffee.jpg',
-                  coffeeName: 'Cappuccino',
-                  coffeePrice: '\$6.00',
-                ),
-                CoffeeTile(
-                  coffeeImagePath: 'lib/images/milk.jpg',
-                  coffeeName: 'Milk Coffee',
-                  coffeePrice: '\$5.00',
-                ),
-              ],
+              ),
             ),
           ),
         ],

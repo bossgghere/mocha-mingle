@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -29,6 +28,7 @@ class _ProfileState extends State<Profile> {
               height: 30,
             ),
             Text("Gourav Kumar" , style: GoogleFonts.bebasNeue(fontSize: 50, color: Colors.orange))
+
           ],
         ),
       ),
