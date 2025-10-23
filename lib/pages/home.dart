@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import 'package:coffee_ui/pages/fav_page.dart';
 import 'package:coffee_ui/pages/home_page.dart';
 import 'package:coffee_ui/pages/menu_page.dart';
 import 'package:coffee_ui/pages/my_drawer.dart';
 import 'package:coffee_ui/pages/notify_page.dart';
+=======
+import 'package:coffee_ui/pages/home_page.dart';
+import 'package:coffee_ui/pages/menu_page.dart';
+import 'package:coffee_ui/pages/my_drawer.dart';
+import 'package:coffee_ui/pages/cart_page.dart';
+>>>>>>> 94a3958 (todaycommit)
 import 'package:coffee_ui/pages/profile.dart';
 
 import 'package:flutter/material.dart';
@@ -24,10 +31,16 @@ class _HomeState extends State<Home> {
   }
 
   final List<Widget> _pages = [
+<<<<<<< HEAD
     const HomePage(),
     const MenuPage(),
     const FavPage(),
     const NotifyPage(),
+=======
+     HomePage(),
+    const MenuPage(),
+    const CartPage(),
+>>>>>>> 94a3958 (todaycommit)
   ];
 
   @override
@@ -74,8 +87,12 @@ class _HomeState extends State<Home> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: "Menu"),
+<<<<<<< HEAD
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorites"),
           BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "Alerts"),
+=======
+          BottomNavigationBarItem(icon: Icon(Icons.store), label: "Cart"),
+>>>>>>> 94a3958 (todaycommit)
         ],
       ),
     );
