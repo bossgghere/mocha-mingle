@@ -100,9 +100,10 @@ async function addItem(req:Request,res:Response) {
             data: item
         })
     }
-    catch{
-        res.status(500).json({ message: "error while adding items to db" })
-    }
+    catch (e) {
+  console.error("Add item error:", e);
+  res.status(500).json({ message: "error while adding items to db", error: e })
+}
 }
 
 

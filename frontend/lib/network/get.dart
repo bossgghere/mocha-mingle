@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-const String baseUrl = 'http://10.0.2.2:3000/api';
+const String baseUrl = 'http://13.48.70.3:3000/api';
 
 Future<List<Map<String, dynamic>>> fetchMenu() async {
   try {
